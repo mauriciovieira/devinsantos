@@ -1,0 +1,14 @@
+{
+    "name": "mini-chat"
+  , "version": "1.0.0"
+  , "description": "Mini-chat construido em Node.js com NowJS."
+  , "author": { "name": "Caio R. Pereira", "email": "caio.ribeiro.pereira@gmail.com", "url": "http://www.crpwebdev.com" }
+  , "engines" : {
+	  "node": "0.6.x"
+	, "npm"	: "1.1.x"
+  }
+  , "dependencies": {
+      "express": ">= 2.x.x"
+	, "now": ">= 0.x.x"
+  }
+}

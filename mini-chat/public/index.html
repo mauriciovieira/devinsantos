@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<style>
+			body{
+				font-family: Verdana;
+				width: 960px;
+				text-align: center;
+				margin: 20px auto 0;
+			}
+			#historico{
+				background: #DEE;
+				height: 500px;
+				padding: 1px 2px;
+				text-align: left;
+			}
+			#historico p{
+				border-bottom: 1px solid #CDD;
+			}
+		</style>
+		<script src='/jquery.min.js'></script>
+		<script src='/nowjs/now.js'></script>
+		<script>
+			$(document).ready(function(){
+
+				now.ready(function(){
+
+					now.name = prompt('Nome: ');
+
+					$('#mensagem').focus();
+
+					$('#enviar').click(function(){
+
+						now.toServer($('#mensagem').val());	
+
+					});
+
+					now.toClient = function(nome, mensagem){
+
+						$('#historico').append('<p>'+ nome+': ' + mensagem + '</p>');
+						$('#mensagem').val('').focus();
+
+					};					
+
+				});
+
+			});
+			
+		</script>
+	</head>
+	<body>
+		<h1>Mini-Chat com Node.js e NowJS</h1>
+		<p>Código-fonte: 
+		<div id='formulario'>
+			<p>
+				Mensagem: <input type='text' name='mensagem' id='mensagem'>
+				<button id='enviar'>Enviar</button>
+			</p>
+		</div>
+		<div id='historico'></div>
+	</body>
+</html>
