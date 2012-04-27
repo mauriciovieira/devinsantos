@@ -1,0 +1,90 @@
+!!! 5
+html
+	head
+		style
+			body{
+				width: 960px;
+				margin: 0 auto;
+				text-align: center;
+				font-family: Verdana;
+			}
+			table{
+				width: 950px;
+				border: 1px solid #333;
+			}
+			.center{text-align: center !important;}
+			.table{width:90%;margin-bottom:3px;text-align: center;}
+			.table th,
+			.table td{padding:8px;line-height:18px;text-align:left;vertical-align:top;border-top:1px solid #dddddd;}
+			.table th{font-weight:bold;}
+			.table thead th{vertical-align:bottom;}
+			.table colgroup+thead tr:first-child th,
+			.table colgroup+thead tr:first-child td,
+			.table thead:first-child tr:first-child th,
+			.table thead:first-child tr:first-child td{border-top:0;}
+			.table tbody+tbody{background-color:#FFF;border-top:2px solid #ddd;}
+			.table-condensed th,
+			.table-condensed td{padding:5px;width:110px;}
+	body
+		h1 Simple-Analytics
+		table(class='table-condensed')
+			thead
+				tr
+					th(colspan="4") Estatísticas dos visitantes
+			tbody
+				tr
+					th(colspan="2") Sistema Operacional
+					th(colspan="2") Browsers
+				tr
+					td Windows
+					td#windows 0
+					td Internet Explorer
+					td#ie 0
+				tr
+					td Linux
+					td#linux 0
+					td Google Chrome
+					td#chrome 0
+				tr
+					td Android
+					td#android 0
+					td Mozilla Firefox
+					td#firefox 0
+				tr
+					td iPhone OSX
+					td#osx 0
+					td Safari
+					td#safari 0
+				tr
+					td MacOSX
+					td#mac 0
+					td Opera
+					td#opera 0
+				tr
+					th Total de visitas
+					th#totalVisitas 0
+					th Visitantes online
+					th#visitas 0
+		h4 Essa base estatística foi implementado através do módulo <a href='http://socket.io/' target='_blank' title='Socket.io'>Socket.io</a> do <a href='http://nodejs.org/' target='_blank' title='Node.js' rel='no-follow'>Node.js</a> que processa em tempo real o navegador e o sistema operacional do usuário visitante.
+		h4 Veja nesse link o código-fonte: <a href='https://github.com/caio-ribeiro-pereira/simple-analytics' target='_blank' title='Simple-Analytics GitHub'>https://github.com/caio-ribeiro-pereira/simple-analytics</a>
+		script(src='/js/jquery.min.js')
+		script(src='/js/jquery.client.min.js')
+		script(src='/socket.io/socket.io.js')
+		script
+			var socket = io.connect("http://#{host}");
+			socket.on('connect', function(){
+				socket.emit('message', {browser: $.client.browser, os: $.client.os});
+				socket.on('message', function(data){
+					$('#totalVisitas').text(data.totalVisitas);
+					$('#visitas').text(data.visitas);
+					$('#chrome').text(data.chrome);
+					$('#firefox').text(data.firefox);
+					$('#ie').text(data.ie);
+					$('#opera').text(data.opera);
+					$('#safari').text(data.safari);
+					$('#windows').text(data.windows);
+					$('#osx').text(data.osx);
+					$('#mac').text(data.mac);
+					$('#linux').text(data.linux);
+				});
+			});

@@ -1,0 +1,15 @@
+{
+    "name": "simple-analytics"
+  , "version": "1.0.0"
+  , "description": "Simple-Analytics que monitora S.O e Browser dos visitantes."
+  , "author": { "name": "Caio R. Pereira", "email": "caio.ribeiro.pereira@gmail.com", "url": "http://www.crpwebdev.com" }
+  , "engines" : {
+	  "node": "0.6.x"
+	, "npm"	: "1.1.x"
+  }
+  , "dependencies": {
+      "express": ">= 2.x.x"
+    , "jade": ">= 0.x.x"
+	, "socket.io": ">= 0.x.x"
+  }
+}
